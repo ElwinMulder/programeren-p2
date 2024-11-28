@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>opdracht 1.3</title>
+</head>
+<body>
+    <h1>1.3 Product toevoegen aan de console</h1>
+
+    <form>
+        <label for="productInvoer">Voer een product in:</label>
+        <input type="text" id="productInvoer" name="product" required>
+        <button type="button" onclick="LogProductValue()">Log Product Waarde</button>
+    </form>
+    <script>
+       function LogProductValue() {
+
+        var productWaarde = document.getElementById("productInvoer").value;
+
+        console.log("Ingevoerde product: " + productWaarde);
+       }
+    </script>
+</body>
+</html>
