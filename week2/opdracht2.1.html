@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #movingDiv{
+            width: 50px;
+            height: 50px;
+            background-color: rgb(249, 4, 216);
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="movingDiv"></div>
+
+    <script>
+        function moveDiv(){
+            const movingDiv = document.getElementById('movingDiv'); //zoekt de div in de code
+            const currentPosition = parseInt(movingDiv.style.left) || 0; //de positie van de vierkant
+            const newPosition = currentPosition + 1; //laat het bewegen met 1 pixel
+            movingDiv.style.left = newPosition + 'px'; //stelt de nieuwe positie in
+            const screenWidth = window.innerWidth; //zorgt voor de breedte van het scherm
+            if ( newPosition + 50 > screenWidth) {   //contoleert of de vierkant bij de rechterkant is
+                clearInterval(intervalID); // laat de de animatie stoppen door te annuleren
+            }
+        }
+
+        const intervalID = setInterval(moveDiv, 1); //start de interval
+    </script>
+</body>
+</html>

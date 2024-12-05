@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #movingDiv{
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer; /* zorgt ervoor dat je cursor in een handje verandert */
+        }
+    </style>
+</head>
+<body>
+    <div id="movingDiv"></div>
+
+    <script>
+        const movingDiv = document.getElementById('movingDiv'); 
+        const screenWidth = window.innerWidth;
+       const divWidth = 50;
+       const speed = 2; 
+       let moveRight = true;
+
+       // functie voor een random kleur
+       function getRandomColor(){
+        // de tekens die die kan gebruiken
+        const letters = '0123456789ABCDEF';
+        //start de kleuren code met (#)
+        let color = '#';
+        //genereert een willekeurige kleur door zes willekeurige tekens toe te voegen
+        for (let i = 0; i < 6; i++){
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+
+        //Retourneert de willekeurige kleur
+        return color;
+       }
+
+       function moveDiv(){
+        const currentPositionx = parseInt(movingDiv.style.left) || 0;
+        if (currentPositionx < 0 || currentPositionx > screenWidth - divWidth) {
+            moveRight = !moveRight;
+        }
+        const newPositionx = currentPositionx + ( moveRight ? speed : -speed);
+        movingDiv.style.left = newPositionx + 'px';
+       }
+
+       movingDiv.addEventListener('click', function(){
+       movingDiv.style.backgroundColor = getRandomColor();
+       });
+
+       const intervalID = setInterval(moveDiv, 16);
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #movingDiv{
+            width: 50px;
+            height: 50px;
+            background-color: rgb(249, 4, 216);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="movingDiv"></div>
+
+    <script>
+       const movingDiv = document.getElementById('movingDiv'); 
+    
+       //zorgt voor de breedte
+       const screenWidth = window.innerWidth;
+       const divWidth = 50;
+
+       // de snelheid van de vierkant
+       const speed = 2; 
+
+       //bepaalt de beweging (true is rechts, false is links)
+       let moveRight = true;
+
+       function moveDiv() {
+        const currentPositionx = parseInt(movingDiv.style.left) || 0;
+
+        //kijkt of de div het einde van het scherm heeft bereikt
+        if (currentPositionx < 0 || currentPositionx > screenWidth - divWidth) {
+            moveRight = !moveRight;
+        }
+
+        //beweegt de div in de juiste richting
+        const newPositionx = currentPositionx + ( moveRight ? speed : -speed);
+        movingDiv.style.left = newPositionx + 'px';
+       }
+
+       //zorgt dat het elke 16 millieseconden beweegt
+       const intervalID = setInterval(moveDiv, 0.001);
+    </script>
+</body>
+</html>
