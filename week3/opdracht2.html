@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>loop</title>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var outputElement = document.getElementById("output");
+
+            for (var i = 1; i <= 100; i++){
+            var textNode = document.createTextNode("Dit is een regel " + i);
+            outputElement.appendChild(textNode);
+            if (i < 100) {
+                outputElement.appendChild(document.createElement("br"));
+            }
+            }
+        })
+    </script>
+    <div id="output"></div>
+</body>
+</html>
