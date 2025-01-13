@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock-Paper-Scissors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        .choices {
+            margin: 20px 0;
+        }
+
+        .choices button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            background-color: white;
+            color: #4CAF50;
+            transition: 0.3s;
+        }
+
+        .choices button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #result {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .scoreboard {
+            margin-top: 30px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rock-Paper-Scissors</h1>
+    <p>Kies je optie:</p>
+    <div class="choices">
+        <button onclick="play('rock')">Rock</button>
+        <button onclick="play('paper')">Paper</button>
+        <button onclick="play('scissors')">Scissors</button>
+    </div>
+
+    <p id="result"></p>
+
+    <div class="scoreboard">
+        <p><strong>Jouw score:</strong> <span id="playerScore">0</span></p>
+        <p><strong>Computer score:</strong> <span id="computerScore">0</span></p>
+    </div>
+
+    <script>
+        let playerScore = 0;
+        let computerScore = 0;
+
+        function play(playerChoice) {
+            const choices = ["rock", "paper", "scissors"];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+            let resultMessage = `Jij koos <strong>${playerChoice}</strong>. De computer koos <strong>${computerChoice}</strong>.`;
+
+            if (playerChoice === computerChoice) {
+                resultMessage += " Het is een gelijkspel!";
+            } else if (
+                (playerChoice === "rock" && computerChoice === "scissors") ||
+                (playerChoice === "paper" && computerChoice === "rock") ||
+                (playerChoice === "scissors" && computerChoice === "paper")
+            ) {
+                resultMessage += " Jij wint!";
+                playerScore++;
+            } else {
+                resultMessage += " De computer wint!";
+                computerScore++;
+            }
+
+            document.getElementById("result").innerHTML = resultMessage;
+            document.getElementById("playerScore").textContent = playerScore;
+            document.getElementById("computerScore").textContent = computerScore;
+        }
+    </script>
+</body>
+</html>
